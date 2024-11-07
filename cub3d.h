@@ -6,7 +6,7 @@
 /*   By: abouafso <abouafso@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/03 07:57:05 by abouafso          #+#    #+#             */
-/*   Updated: 2024/11/03 08:02:57 by abouafso         ###   ########.fr       */
+/*   Updated: 2024/11/06 18:15:25 by abouafso         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,16 @@
 # include <fcntl.h>
 
 
+typedef struct s_libx
+{
+	char	**map;
+	char	**updated_map;
+	int		fd;
+
+}			t_libx;
+
+// get next line
+
 int		ft_strlen(char *str);
 char	*ft_strrchr(char *str, int c);
 void	*ft_calloc(size_t num_elements, size_t element_size);
@@ -34,5 +44,16 @@ char	*copy_line(char *buffer);
 char	*remove_first_line(char *buffer);
 char	*get_next_line(int fd);
 
+//  utils
+void	ft_putstr_fd(char *str, int fd);
+char	*ft_strdup(char *s1);
+void    ft_error(char *str, t_libx *mlx);
+
+// parsing
+int		check_file(char *str);
+char	**read_map(int fd, char *av);
+int     count_lines(int fd);
+int		countliness(char **map);
+char	**map_copie(t_libx *mlx);
 
 #endif
