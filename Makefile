@@ -6,7 +6,7 @@
 #    By: abouafso <abouafso@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/11/03 08:08:20 by abouafso          #+#    #+#              #
-#    Updated: 2024/11/06 18:17:47 by abouafso         ###   ########.fr        #
+#    Updated: 2024/11/07 23:17:08 by abouafso         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -19,7 +19,7 @@ CC = CC
 
 RM = rm -rf
 
-SRC = get_next_line_utils.c get_next_line.c cub3d.c utils.c parsing_utils.c read_map.c
+SRC = get_next_line_utils.c get_next_line.c cub3d.c utils.c parsing_utils.c read_map.c ft_split.c
 
 OBJ = $(addprefix obj/, $(SRC:.c=.o))
 

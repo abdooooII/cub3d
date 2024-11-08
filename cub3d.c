@@ -6,11 +6,12 @@
 /*   By: abouafso <abouafso@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/03 08:10:53 by abouafso          #+#    #+#             */
-/*   Updated: 2024/11/07 08:52:56 by abouafso         ###   ########.fr       */
+/*   Updated: 2024/11/08 02:31:35 by abouafso         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
+#include <stdlib.h>
 
 int	check_walls(char **map, t_libx mlx)
 {
@@ -82,6 +83,39 @@ int	parse_new_map(t_libx *mlx)
     printf("\n");
 	return (0);
 }
+
+void	split_map(t_libx *mlx)
+{
+	int i;
+
+	i = 0;
+	mlx->infos = malloc(sizeof(char ***) * countliness(mlx->map) + 1);
+	while(mlx->map[i] && mlx->map[i][0] != '1' && mlx->map[i][0] != ' '&& mlx->map[i][0] != '\n')
+	{
+		mlx->infos[i] = ft_split(mlx->map[i], ' ');
+		if(!mlx->infos)
+			return;
+		i++;
+	}
+	mlx->infos[i] = NULL;
+}
+void	init_infos(t_libx *mlx)
+{
+	int i = 0;
+	while(mlx->infos[i])
+	{
+		printf("----> %s -----> %s\n", mlx->infos[i][0], mlx->infos[i][1]);
+		i++;
+	}
+}
+
+void	map_info(t_libx *mlx)
+{
+	split_map(mlx);
+	puts("hello");
+	init_infos(mlx);
+}
+
 int	parsing(char **av, t_libx *mlx)
 {
     
@@ -90,12 +124,13 @@ int	parsing(char **av, t_libx *mlx)
 		ft_putstr_fd("file descriptor fail\n", 2);
 	check_file(av[1]);
 	mlx->map = read_map(mlx->fd, av[1]);
-	int i = 0;
-	while(mlx->map[i])
-	{
-		printf("line %d --> %s", i, mlx->map[i]);
-		i++;
-	}
+	// int i = 0;
+	// while(mlx->map[i])
+	// {
+	// 	printf("line %d --> %s", i, mlx->map[i]);
+	// 	i++;
+	// }
+	map_info(mlx);
 	printf("\n");
 	parse_new_map(mlx);
 	return(0);
